@@ -1,4 +1,5 @@
 using UnityEngine;
+using Game.Features.Characters;
 
 namespace Game.Player
 {
