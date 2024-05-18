@@ -1,5 +1,6 @@
 using UnityEngine;
 using Game.Features.Characters;
+using System;
 
 namespace Game.Player
 {
@@ -8,6 +9,8 @@ namespace Game.Player
 	{
 		[SerializeField] private float _walkSpeed = 3f;
 		[SerializeField] private Animator _animator;
+		[SerializeField] private Transform _interactionPivot;
+		[SerializeField] private float _interactionMaxDistance = 0.5f;
 		// [SerializeField] public CollisionShape2D HorizontalCollider { get; private set; }
 		// [SerializeField] public CollisionShape2D VerticalCollider { get; private set; }
 		// [SerializeField] public RayCast2D InteractionRaycast { get; private set; }
@@ -84,13 +87,22 @@ namespace Game.Player
 			// else { _collided = false; }
 		}
 
+		private void OnDrawGizmosSelected()
+		{
+			Gizmos.color = Color.black;
+			if (Application.isPlaying && _interactionPivot != null)
+			{
+				Vector2 direction = GetVector2FromDirection(FacingDirection);
+
+				Gizmos.DrawRay(_interactionPivot.position, direction * _interactionMaxDistance);
+			}
+
+		}
+
 		private void ProcessInput()
 		{
-			// if (Input.IsActionJustPressed("interact"))
-			// {
-			// 	if (Dialog.IsActive) { Dialog.Instance.NextLine(); }
-			// 	else { TryInteract(); }
-			// }
+			if (Input.GetButtonDown(InputButtons.Interact)) { TryInteract(); }
+
 			// _running = Input.IsActionPressed("run");
 
 			if (Input.GetButtonDown(InputButtons.MoveUp)) { _characterMovement.AddMoveCommand(Direction.Up); }
@@ -136,23 +148,36 @@ namespace Game.Player
 			// AnimationPlayer.CurrentAnimation = state + FacingDirection.ToString();
 		}
 
-		private void TryInteract()
+		private bool TryInteract()
 		{
-			// if (!InteractionRaycast.IsColliding()) { return; }
+			RaycastHit2D hit = Physics2D.Raycast(
+				_interactionPivot.position,
+				GetVector2FromDirection(FacingDirection),
+				_interactionMaxDistance
+			);
 
-			// Node2D target = (Node2D)InteractionRaycast.GetCollider();
+			Collider2D target = hit.collider;
+			if (target == null || !target.CompareTag("Interaction")) { return false; }
 
-			// if (!target.GetGroups().Contains("Interactable")) { return; }
+			if (!target.TryGetComponent<Interaction>(out Interaction interaction))
+			{
+				Debug.LogWarning("Missing Interaction Script", target);
+			}
 
-			// try
-			// {
-			// 	IInteractable targetInteraction = (IInteractable)target;
-			// 	targetInteraction.Interact();
-			// }
-			// catch (Exception e)
-			// {
-			// 	GD.PrintErr(e);
-			// }
+			interaction.Interact();
+			return true;
+		}
+
+		private Vector2 GetVector2FromDirection(Direction direction)
+		{
+			return direction switch
+			{
+				Direction.Up => Vector2.up,
+				Direction.Down => Vector2.down,
+				Direction.Left => Vector2.left,
+				Direction.Right => Vector2.right,
+				_ => throw new System.NotImplementedException(),
+			};
 		}
 
 

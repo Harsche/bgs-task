@@ -56,5 +56,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "BGS TASK.sln"
+    "dotnet.defaultSolution": "BGS TASK.sln",
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 120,
+    "editor.rulers": [
+        120
+    ]
 }
