@@ -9,6 +9,7 @@ namespace Game.Player
 	{
 		[SerializeField] private float _walkSpeed = 3f;
 		[SerializeField] private Animator _animator;
+		[SerializeField] private SpriteRenderer _spriteRenderer;
 		[SerializeField] private Transform _interactionPivot;
 		[SerializeField] private float _interactionMaxDistance = 0.5f;
 		// [SerializeField] public CollisionShape2D HorizontalCollider { get; private set; }
@@ -24,6 +25,7 @@ namespace Game.Player
 		private CharacterMovement _characterMovement;
 		public static Player Instance { get; set; }
 		public static Direction FacingDirection { get; private set; } = Direction.Down;
+		public CharacterCustomization CharacterCustomization { get; private set; }
 
 #if UNITY_EDITOR
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -47,8 +49,8 @@ namespace Game.Player
 			Instance = this;
 
 			_rigidbody = GetComponent<Rigidbody2D>();
-
 			_characterMovement = new(_rigidbody, _walkSpeed);
+			CharacterCustomization = new(_spriteRenderer.material);
 		}
 
 		public void Update()
@@ -60,31 +62,6 @@ namespace Game.Player
 		public void FixedUpdate()
 		{
 			_characterMovement.GetMoveCommand().Execute();
-			// if (_running) { Velocity *= 2; }
-			// AnimationPlayer.SpeedScale = _running ? 2 : 1;
-
-			// if (Dialog.IsActive) { Velocity = Vector2.Zero; }
-
-			// if (!Cutscene.IsPlayingCutscene) { SetAnimationState(_collided); }
-
-			// InteractionRaycast.TargetPosition = FacingDirection switch
-			// {
-			// 	Direction.Up => Vector2.Up * RaycastOffset.Y,
-			// 	Direction.Down => Vector2.Down * RaycastOffset.Y,
-			// 	Direction.Left => Vector2.Left * RaycastOffset.X,
-			// 	Direction.Right => Vector2.Right * RaycastOffset.X,
-			// 	_ => throw new System.NotImplementedException(),
-			// };
-
-			// // "MoveAndSlide" already takes delta time into account.
-			// var collision = MoveAndCollide(Velocity * (float)delta);
-
-			// if (collision != null)
-			// {
-			// 	Vector2 normal = collision.GetNormal();
-			// 	_collided = normal.Dot(Velocity.Normalized()) < 0;
-			// }
-			// else { _collided = false; }
 		}
 
 		private void OnDrawGizmosSelected()
@@ -97,6 +74,11 @@ namespace Game.Player
 				Gizmos.DrawRay(_interactionPivot.position, direction * _interactionMaxDistance);
 			}
 
+		}
+
+		public void SetCharacterAttribute(CharacterAttribute attribute)
+		{
+			CharacterCustomization.SetCharacterAttribute(attribute);
 		}
 
 		private void ProcessInput()
