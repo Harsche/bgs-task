@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76d547e9db5e6842a601d119f940199, type: 3}
   m_Name: (Feet Attribute) Slippers
   m_EditorClassIdentifier: 
+  Purchased: 0
   <Name>k__BackingField: Slippers
   <Price>k__BackingField: 20
   <Icon>k__BackingField: {fileID: 21300000, guid: ccfd30ef8108b5e4b88ae9ca7e459fbc, type: 3}

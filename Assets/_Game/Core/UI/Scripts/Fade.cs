@@ -44,7 +44,7 @@ namespace Game.UI
         private void FadeScreen(float finalValue)
         {
             if (_fadeTweener != null && _fadeTweener.IsActive() && _fadeTweener.IsPlaying()) { _fadeTweener.Kill(); }
-            _fadeTweener = _black.DOFade(finalValue, _fadeDuration);
+            _fadeTweener = _black.DOFade(finalValue, _fadeDuration).SetLink(gameObject);
         }
 
         private enum FadeOnAwake

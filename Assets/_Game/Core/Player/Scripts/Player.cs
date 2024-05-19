@@ -2,6 +2,7 @@ using UnityEngine;
 using Game.Features.Characters;
 using System;
 using System.Collections;
+using Cinemachine;
 
 namespace Game.Player
 {
@@ -13,6 +14,9 @@ namespace Game.Player
 		[SerializeField] private Transform _interactionPivot;
 		[SerializeField] private float _interactionMaxDistance = 0.5f;
 		[SerializeField] private LayerMask _interactionMask;
+		[SerializeField] private GameObject _interactionIndicator;
+		[field: SerializeField] public Camera Camera { get; private set; }
+		[field: SerializeField] public CinemachineVirtualCamera VirtualCamera { get; private set; }
 		public int Coins;
 
 		// [SerializeField] public Inventory Inventory { get; private set; }
@@ -49,6 +53,14 @@ namespace Game.Player
 
 			_rigidbody = GetComponent<Rigidbody2D>();
 			_characterMovement = new(_rigidbody, _walkSpeed);
+			StartCoroutine(CheckForInteraction());
+
+			Camera.transform.SetParent(null);
+			VirtualCamera.transform.SetParent(null);
+
+			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(Camera.gameObject);
+			DontDestroyOnLoad(VirtualCamera.gameObject);
 		}
 
 		private void Update()
@@ -75,10 +87,20 @@ namespace Game.Player
 
 		public IEnumerator StopInputForSeconds(float seconds)
 		{
-			_stopInput = true;
-			_characterMovement.RemoveAllCommands();
+			ToggleInput(false);
 			yield return new WaitForSeconds(seconds);
-			_stopInput = false;
+			ToggleInput(true);
+		}
+
+		public void ToggleInput(bool value)
+		{
+			_stopInput = !value;
+			if (_stopInput) { _characterMovement.RemoveAllCommands(); }
+		}
+
+		public void SetCameraBounds(CompositeCollider2D collider2D)
+		{
+			VirtualCamera.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = collider2D;
 		}
 
 		private void ProcessInput()
@@ -173,7 +195,22 @@ namespace Game.Player
 			return direction;
 		}
 
-
+		private IEnumerator CheckForInteraction()
+		{
+			WaitForSeconds wait = new(0.1f);
+			while (gameObject)
+			{
+				yield return wait;
+				RaycastHit2D hit = Physics2D.Raycast(
+					_interactionPivot.position,
+					GetVector2FromDirection(FacingDirection),
+					_interactionMaxDistance,
+					_interactionMask.value
+				);
+				Collider2D target = hit.collider;
+				_interactionIndicator.SetActive(target != null);
+			}
+		}
 	}
 
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9791540f179a09f429ba25e39fa47b45, type: 3}
   m_Name: (Torso Attribute) Tabard Jacket
   m_EditorClassIdentifier: 
+  Purchased: 0
   <Name>k__BackingField: Tabard Jacket
   <Price>k__BackingField: 75
   <Icon>k__BackingField: {fileID: 21300000, guid: 3ebde25081c386c42b7e478ab6997b20, type: 3}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baea526c05ffd264088f7c4de61f7bf5, type: 3}
   m_Name: (Leg Attribute) Plate Armor
   m_EditorClassIdentifier: 
+  Purchased: 0
   <Name>k__BackingField: Leg Plate Armor
   <Price>k__BackingField: 550
   <Icon>k__BackingField: {fileID: 21300000, guid: 55b4bd575c68ff745b1c6caee7085a2a, type: 3}

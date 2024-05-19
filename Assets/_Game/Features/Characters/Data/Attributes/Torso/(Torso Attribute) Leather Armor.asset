@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9791540f179a09f429ba25e39fa47b45, type: 3}
   m_Name: (Torso Attribute) Leather Armor
   m_EditorClassIdentifier: 
+  Purchased: 0
   <Name>k__BackingField: Leather Armor
   <Price>k__BackingField: 150
   <Icon>k__BackingField: {fileID: 21300000, guid: 4d20ba64c4c924b4c8116c701db6d4ff, type: 3}

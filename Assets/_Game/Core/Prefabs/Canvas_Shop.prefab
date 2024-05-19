@@ -901,7 +901,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 170210146919596765}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8545001182347031927}
+        m_TargetAssemblyTypeName: CharacterAttributeShop, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2620176375584335018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: -182.599, y: -102.712}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5322718685141723367
@@ -1880,10 +1892,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7443459158168469662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -58.115997}
-  m_SizeDelta: {x: 304.018, y: 116.231995}
+  m_AnchorMin: {x: 0.066759035, y: 1}
+  m_AnchorMax: {x: 0.93600005, y: 1}
+  m_AnchoredPosition: {x: -1, y: -58.115997}
+  m_SizeDelta: {x: 1.6500244, y: 116.232}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6440018785528211433
 CanvasRenderer:
@@ -2731,6 +2743,15 @@ MonoBehaviour:
   _shopItems:
   - {fileID: 11400000, guid: bc6c19ea126712f4d924f935c7429ef6, type: 2}
   - {fileID: 11400000, guid: 26f25e8773c8811409fd95817a266182, type: 2}
+  - {fileID: 11400000, guid: d419f80ec7d3da444b040315353402bf, type: 2}
+  - {fileID: 11400000, guid: af6671128f028cc4198f44dcb0f77766, type: 2}
+  - {fileID: 11400000, guid: 43b1037d490fa7e4cbf57c28255c2f0e, type: 2}
+  - {fileID: 11400000, guid: 01414848e2b755c45a6f476e20c061c8, type: 2}
+  - {fileID: 11400000, guid: ccbe9dc094fdb2d448b31794b653034e, type: 2}
+  - {fileID: 11400000, guid: 6acb8e3b3d41805469fc2d87ab275056, type: 2}
+  - {fileID: 11400000, guid: 93ec725cfe82ce54680c839a67f4bd31, type: 2}
+  - {fileID: 11400000, guid: 66ca8bbad7f07fd4886524d8b6bf78b1, type: 2}
+  - {fileID: 11400000, guid: 77a344e69cce5a747b2f5f5b22af516e, type: 2}
   _shopButtonPrefab: {fileID: 8678458696294964796, guid: c2de15c94c2e17e44a0f78009b687506, type: 3}
   _buttonsParent: {fileID: 2483343321087501056}
   _buyButton: {fileID: 6477836562220562976}

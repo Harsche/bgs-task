@@ -45,8 +45,10 @@ public class CharacterAttributeShop : MonoBehaviour
         _canvas = GetComponent<Canvas>();
         _canvas.enabled = false;
 
-        foreach (BaseCharacterAttribute attribute in _shopItems)
+        for (int i = 0; i < _shopItems.Count; i++)
         {
+            BaseCharacterAttribute attribute  = Instantiate(_shopItems[i]);
+            _shopItems[i] = attribute;
             ShopButton button = Instantiate(_shopButtonPrefab, _buttonsParent);
             button.SetItem(attribute);
             button.Button.onClick.AddListener(() => SelectItem(attribute));
@@ -57,11 +59,13 @@ public class CharacterAttributeShop : MonoBehaviour
     {
         if (value)
         {
+            Player.Instance.ToggleInput(false);
             _canvas.enabled = true;
             _contentTransform.DOAnchorPos(_showPosition, _toggleDuration);
         }
         else
         {
+            Player.Instance.ToggleInput(true);
             _contentTransform.DOAnchorPos(_hidePosition, _toggleDuration)
                 .OnComplete(() => _canvas.enabled = false);
         }

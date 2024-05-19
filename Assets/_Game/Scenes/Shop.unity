@@ -1850,43 +1850,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &353552218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 353552219}
-  m_Layer: 0
-  m_Name: Player Spawn
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &353552219
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353552218}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.8419976, y: 2.6150346, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &434587718 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3446068835454688918, guid: 5a165471d5c98414b96a47d562afa6cf, type: 3}
-  m_PrefabInstance: {fileID: 940218485}
-  m_PrefabAsset: {fileID: 0}
---- !u!21 &488770957
+--- !u!21 &686064504
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -1980,6 +1944,7 @@ Transform:
   m_Children:
   - {fileID: 925293157}
   - {fileID: 1022126394}
+  - {fileID: 1673963910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &827325139
@@ -4008,6 +3973,7 @@ GameObject:
   - component: {fileID: 1673963909}
   - component: {fileID: 1673963908}
   - component: {fileID: 1673963907}
+  - component: {fileID: 1673963911}
   m_Layer: 0
   m_Name: Camera Bounds
   m_TagString: Untagged
@@ -4074,7 +4040,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: -5.861498, y: -1.2371488}
+  m_Offset: {x: -4.959465, y: 0.6989212}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4085,7 +4051,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.836845, y: 9.963934}
+  m_Size: {x: 20.872955, y: 13.836074}
   m_EdgeRadius: 0
 --- !u!66 &1673963909
 CompositeCollider2D:
@@ -4126,20 +4092,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1673963908}
     m_ColliderPaths:
-    - - X: 30569248
-        Y: 37448184
-      - X: -147799200
-        Y: 37448184
-      - X: -147799200
+    - - X: 54770128
+        Y: 76169584
+      - X: -153959424
+        Y: 76169584
+      - X: -153959424
         Y: -62191156
-      - X: 30569248
+      - X: 54770128
         Y: -62191156
   m_CompositePaths:
     m_Paths:
-    - - {x: 3.0568957, y: -6.2191157}
-      - {x: 3.0568957, y: 3.7448184}
-      - {x: -14.779921, y: 3.7447894}
-      - {x: -14.779891, y: -6.2191157}
+    - - {x: 5.4769835, y: -6.2191157}
+      - {x: 5.4769835, y: 7.6169586}
+      - {x: -15.395943, y: 7.616929}
+      - {x: -15.395914, y: -6.2191157}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -4157,8 +4123,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 755194099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673963911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673963906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc77d509d53541249a8749a303266990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020055566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4207,9 +4185,9 @@ MonoBehaviour:
   _onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 434587718}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 5425520163720573828}
+        m_TargetAssemblyTypeName: CharacterAttributeShop, Assembly-CSharp
+        m_MethodName: Toggle
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4217,7 +4195,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!61 &2020055569
 BoxCollider2D:
@@ -5263,6 +5241,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2619647273660534698, guid: 5081888909c61e846a71113712175b9b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619647273660534698, guid: 5081888909c61e846a71113712175b9b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8018972047187059129, guid: 5081888909c61e846a71113712175b9b, type: 3}
       propertyPath: m_Name
       value: Canvas_Shop
@@ -5272,13 +5258,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5081888909c61e846a71113712175b9b, type: 3}
+--- !u!114 &5425520163720573828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8545001182347031927, guid: 5081888909c61e846a71113712175b9b, type: 3}
+  m_PrefabInstance: {fileID: 5425520163720573827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a380e77687081c84d8684f788f3b6679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 135103969}
-  - {fileID: 1673963910}
-  - {fileID: 353552219}
   - {fileID: 1267037250}
   - {fileID: 755194099}
   - {fileID: 940218485}
