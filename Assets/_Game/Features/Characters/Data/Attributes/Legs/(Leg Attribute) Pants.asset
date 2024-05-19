@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Plain Skirt
   <Price>k__BackingField: 200
+  <Icon>k__BackingField: {fileID: 21300000, guid: a0e708930047f1540bf71caae3fb8b98, type: 3}
   <MaleTexture>k__BackingField: {fileID: 2800000, guid: f77345c4d10c271479b31780f6802f8e, type: 3}
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}

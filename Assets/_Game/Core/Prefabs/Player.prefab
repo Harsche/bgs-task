@@ -60,7 +60,7 @@ MonoBehaviour:
   _legsColor: {r: 1, g: 1, b: 1, a: 1}
   _feet: {fileID: 0}
   _feetColor: {r: 1, g: 1, b: 1, a: 1}
-  _walkSpeed: 3
+  _walkSpeed: 4
   _interactionPivot: {fileID: 4794668344323056671}
   _interactionMaxDistance: 0.5
   _interactionMask:

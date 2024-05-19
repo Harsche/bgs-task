@@ -13,6 +13,7 @@ namespace Game.Player
 		[SerializeField] private Transform _interactionPivot;
 		[SerializeField] private float _interactionMaxDistance = 0.5f;
 		[SerializeField] private LayerMask _interactionMask;
+		[field: SerializeField] public float Coins { get; protected set; }
 
 		// [SerializeField] public Inventory Inventory { get; private set; }
 
