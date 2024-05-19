@@ -149,6 +149,9 @@ MonoBehaviour:
   <Camera>k__BackingField: {fileID: 2642472568097664501}
   <VirtualCamera>k__BackingField: {fileID: 6632999852600891764}
   Coins: 9999
+  _audioSource: {fileID: 0}
+  _stepSfx: {fileID: 0}
+  _stepSfxVolume: 0.5
 --- !u!212 &4112074592659800329
 SpriteRenderer:
   m_ObjectHideFlags: 0

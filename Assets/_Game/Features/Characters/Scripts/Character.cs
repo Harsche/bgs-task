@@ -32,6 +32,10 @@ public class Character : MonoBehaviour
         }
     }
 
+    protected virtual void Awake() {
+        ResetMaterial();
+    }
+
     public void SetCharacterAttribute(BaseCharacterAttribute attribute)
     {
         if(attribute is HairAttribute hairAttribute) {_hair = hairAttribute;}

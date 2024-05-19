@@ -46,7 +46,7 @@ namespace Game.Player
 
 #endif
 
-		private void Awake()
+		protected override void Awake()
 		{
 			if (Instance != null)
 			{
@@ -55,6 +55,8 @@ namespace Game.Player
 			}
 
 			Instance = this;
+
+			base.Awake();
 
 			_rigidbody = GetComponent<Rigidbody2D>();
 			_characterMovement = new(_rigidbody, _walkSpeed);
