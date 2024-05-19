@@ -19,6 +19,11 @@ namespace Game.Player
 		[field: SerializeField] public CinemachineVirtualCamera VirtualCamera { get; private set; }
 		public int Coins;
 
+		[Header("Audio")]
+		[SerializeField] private AudioSource _audioSource;
+		[SerializeField] private AudioClip _stepSfx;
+		[SerializeField, Range(0, 1)] private float _stepSfxVolume = 0.5f;
+
 		// [SerializeField] public Inventory Inventory { get; private set; }
 
 		private bool _collided;
@@ -83,6 +88,11 @@ namespace Game.Player
 
 				Gizmos.DrawRay(_interactionPivot.position, direction * _interactionMaxDistance);
 			}
+		}
+
+		public void PlayStepSound()
+		{
+			_audioSource.PlayOneShot(_stepSfx, _stepSfxVolume);
 		}
 
 		public IEnumerator StopInputForSeconds(float seconds)
