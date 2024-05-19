@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 3160609583152952152}
   - component: {fileID: 3262352825601534220}
   - component: {fileID: 8865190719564368886}
-  - component: {fileID: 5028117840663091188}
   - component: {fileID: 8475592161896323476}
   - component: {fileID: 1758401661217440945}
-  - component: {fileID: 1879076623307841044}
   m_Layer: 0
   m_Name: NPC - Shopkeeper
   m_TagString: Interaction
@@ -111,27 +109,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!95 &5028117840663091188
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3446068835454688918}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9b0c59b165f267f43a051f0c34369a3b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &8475592161896323476
 Rigidbody2D:
   serializedVersion: 4
@@ -140,7 +117,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3446068835454688918}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -204,18 +181,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67229617, y: 0.478499}
   m_EdgeRadius: 0
---- !u!114 &1879076623307841044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3446068835454688918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4e461d60adaea4ca620d2e4242e392, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onInteract:
-    m_PersistentCalls:
-      m_Calls: []

@@ -18,11 +18,11 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator LoadScene()
     {
+        Player player = Player.Instance;
+        player.StartCoroutine(player.StopInputForSeconds(_stopInputTimeSpan));
         Fade fade = Instantiate(_fadePrefab);
         fade.FadeOut();
         yield return new WaitForSeconds(fade.FadeDuration);
-        Player player = Player.Instance;
-        player.StartCoroutine(player.StopInputForSeconds(_stopInputTimeSpan));
         SceneManager.LoadScene(sceneToLoad);
     }
 }

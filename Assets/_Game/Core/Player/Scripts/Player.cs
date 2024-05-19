@@ -8,9 +8,11 @@ namespace Game.Player
 	[RequireComponent(typeof(Rigidbody2D))]
 	public partial class Player : Character
 	{
+		[Header("Player Parameters")]
 		[SerializeField] private float _walkSpeed = 3f;
 		[SerializeField] private Transform _interactionPivot;
 		[SerializeField] private float _interactionMaxDistance = 0.5f;
+		[SerializeField] private LayerMask _interactionMask;
 
 		// [SerializeField] public Inventory Inventory { get; private set; }
 
@@ -56,9 +58,7 @@ namespace Game.Player
 
 		private void FixedUpdate()
 		{
-			MoveCommand moveCommand = _characterMovement.GetMoveCommand();
-			FacingDirection = GetDirectionFromVector2(moveCommand.Velocity);
-			moveCommand.Execute();
+			MoveCharacter();
 		}
 
 		private void OnDrawGizmosSelected()
@@ -76,6 +76,7 @@ namespace Game.Player
 		public IEnumerator StopInputForSeconds(float seconds)
 		{
 			_stopInput = true;
+			_characterMovement.RemoveAllCommands();
 			yield return new WaitForSeconds(seconds);
 			_stopInput = false;
 		}
@@ -96,6 +97,18 @@ namespace Game.Player
 
 			if (Input.GetButtonDown(InputActions.MoveRight)) { _characterMovement.AddMoveCommand(Direction.Right); }
 			else if (Input.GetButtonUp(InputActions.MoveRight)) { _characterMovement.RemoveMoveCommand(Direction.Right); }
+		}
+
+		private void MoveCharacter()
+		{
+			MoveCommand moveCommand;
+
+			if (_stopInput) { moveCommand = _characterMovement.GetStopCommand(); }
+			else { moveCommand = _characterMovement.GetMoveCommand(); }
+
+			Vector2 velocity = moveCommand.Velocity;
+			if (velocity != Vector2.zero) { FacingDirection = GetDirectionFromVector2(velocity); }
+			moveCommand.Execute();
 		}
 
 
@@ -122,7 +135,8 @@ namespace Game.Player
 			RaycastHit2D hit = Physics2D.Raycast(
 				_interactionPivot.position,
 				GetVector2FromDirection(FacingDirection),
-				_interactionMaxDistance
+				_interactionMaxDistance,
+				_interactionMask.value
 			);
 
 			Collider2D target = hit.collider;

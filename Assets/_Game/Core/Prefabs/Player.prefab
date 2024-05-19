@@ -63,6 +63,9 @@ MonoBehaviour:
   _walkSpeed: 3
   _interactionPivot: {fileID: 4794668344323056671}
   _interactionMaxDistance: 0.5
+  _interactionMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!212 &4112074592659800329
 SpriteRenderer:
   m_ObjectHideFlags: 0

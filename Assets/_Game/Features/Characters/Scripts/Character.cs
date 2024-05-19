@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-
+    [Header("Character Parameters")]
     [SerializeField] protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected Animator _animator;
 

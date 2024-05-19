@@ -30,6 +30,11 @@ namespace Game.Features.Characters
             return _moveCommands.Count > 0 ? _moveCommands[0] : _stop;
         }
 
+        public MoveCommand GetStopCommand()
+        {
+            return _stop;
+        }
+
         public void AddMoveCommand(Direction direction)
         {
             MoveCommand moveDirection = direction switch
@@ -58,9 +63,16 @@ namespace Game.Features.Characters
             if (_moveCommands.Contains(moveDirection)) { _moveCommands.Remove(moveDirection); }
         }
 
+        public void RemoveAllCommands()
+        {
+            _moveCommands.Clear();
+        }
+
         private void RemoveMoveCommand(MoveCommand moveCommand)
         {
             if (_moveCommands.Contains(moveCommand)) { _moveCommands.Remove(moveCommand); }
         }
+
+
     }
 }
