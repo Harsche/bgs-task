@@ -13,3 +13,6 @@ PresetManager:
     - m_Preset: {fileID: 2655988077585873504, guid: fdd4bdde1f6fb0a4d942e66975b47ca0, type: 2}
       m_Filter: glob:"_Game/Features/Characters/Sprites/**.png"
       m_Disabled: 0
+    - m_Preset: {fileID: 2655988077585873504, guid: a5c08349568b0b04795dc6eed66ace18, type: 2}
+      m_Filter: glob:"_Game/Core/Tilemaps/Exterior/Sprites/**.png"
+      m_Disabled: 0

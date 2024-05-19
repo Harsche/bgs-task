@@ -1,6 +1,7 @@
 using UnityEngine;
 using Game.Features.Characters;
 using System;
+using System.Collections;
 
 namespace Game.Player
 {
@@ -15,6 +16,8 @@ namespace Game.Player
 
 		private bool _collided;
 		private bool _running;
+		private bool _stopInput;
+
 		private Rigidbody2D _rigidbody;
 
 		private CharacterMovement _characterMovement;
@@ -53,7 +56,9 @@ namespace Game.Player
 
 		private void FixedUpdate()
 		{
-			_characterMovement.GetMoveCommand().Execute();
+			MoveCommand moveCommand = _characterMovement.GetMoveCommand();
+			FacingDirection = GetDirectionFromVector2(moveCommand.Velocity);
+			moveCommand.Execute();
 		}
 
 		private void OnDrawGizmosSelected()
@@ -68,8 +73,16 @@ namespace Game.Player
 
 		}
 
+		public IEnumerator StopInputForSeconds(float seconds)
+		{
+			_stopInput = true;
+			yield return new WaitForSeconds(seconds);
+			_stopInput = false;
+		}
+
 		private void ProcessInput()
 		{
+			if (_stopInput) { return; }
 			if (Input.GetButtonDown(InputActions.Interact)) { TryInteract(); }
 
 			if (Input.GetButtonDown(InputActions.MoveUp)) { _characterMovement.AddMoveCommand(Direction.Up); }
@@ -89,11 +102,6 @@ namespace Game.Player
 		private void UpdateAnimationParameters()
 		{
 			Vector2 velocity = _rigidbody.velocity;
-
-			if (velocity.x > 0) { FacingDirection = Direction.Right; }
-			else if (velocity.x < 0) { FacingDirection = Direction.Left; }
-			else if (velocity.y > 0) { FacingDirection = Direction.Up; }
-			else if (velocity.y < 0) { FacingDirection = Direction.Down; }
 
 			if (FacingDirection is Direction.Up or Direction.Down)
 			{
@@ -139,6 +147,16 @@ namespace Game.Player
 				Direction.Right => Vector2.right,
 				_ => throw new System.NotImplementedException(),
 			};
+		}
+
+		private Direction GetDirectionFromVector2(Vector2 vector2)
+		{
+			Direction direction = Direction.Down;
+			if (vector2.x > 0.1f) { direction = Direction.Right; }
+			else if (vector2.x < -0.1f) { direction = Direction.Left; }
+			else if (vector2.y > 0.1f) { direction = Direction.Up; }
+			else if (vector2.y < -0.1f) { direction = Direction.Down; }
+			return direction;
 		}
 
 
