@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baea526c05ffd264088f7c4de61f7bf5, type: 3}
   m_Name: (Leg Attribute) Plain Skirt
   m_EditorClassIdentifier: 
+  Purchased: 1
   <Name>k__BackingField: Plain Skirt
   <Price>k__BackingField: 0
   <Icon>k__BackingField: {fileID: 21300000, guid: a5b534fc547317540a2264ed5f12c850, type: 3}

@@ -34,6 +34,11 @@ public class Character : MonoBehaviour
 
     public void SetCharacterAttribute(BaseCharacterAttribute attribute)
     {
+        if(attribute is HairAttribute hairAttribute) {_hair = hairAttribute;}
+        else if(attribute is TorsoAttribute torsoAttribute) {_torso = torsoAttribute;}
+        else if(attribute is LegsAttribute legsAttribute) {_legs = legsAttribute;}
+        else if(attribute is FeetAttribute feetAttribute) {_feet = feetAttribute;}
+
         int texturePropertyID = Shader.PropertyToID($"_Attribute_{attribute.Type}");
         int colorPropertyID = Shader.PropertyToID($"_{attribute.Type}Color");
         _material.SetTexture(texturePropertyID, attribute.MaleTexture);
@@ -43,8 +48,16 @@ public class Character : MonoBehaviour
 
     public void RemoveCharacterAttribute(AttributeType attributeType)
     {
-        int texturePropertyID = Shader.PropertyToID("_Attribute_" + attributeType.ToString());
+        int texturePropertyID = Shader.PropertyToID($"_Attribute_{attributeType}");
         _material.SetTexture(texturePropertyID, null);
+    }
+
+    public void RemoveCharacterAttributeIfEquipped(BaseCharacterAttribute attribute)
+    {
+        if (attribute == _hair) { RemoveCharacterAttribute(AttributeType.Hair); }
+        else if (attribute == _torso) { RemoveCharacterAttribute(AttributeType.Torso); }
+        else if (attribute == _legs) { RemoveCharacterAttribute(AttributeType.Legs); }
+        else if (attribute == _feet) { RemoveCharacterAttribute(AttributeType.Feet); }
     }
 
     public void UpdateAttributes()

@@ -13,7 +13,7 @@ namespace Game.Player
 		[SerializeField] private Transform _interactionPivot;
 		[SerializeField] private float _interactionMaxDistance = 0.5f;
 		[SerializeField] private LayerMask _interactionMask;
-		[field: SerializeField] public float Coins { get; protected set; }
+		public int Coins;
 
 		// [SerializeField] public Inventory Inventory { get; private set; }
 
@@ -71,7 +71,6 @@ namespace Game.Player
 
 				Gizmos.DrawRay(_interactionPivot.position, direction * _interactionMaxDistance);
 			}
-
 		}
 
 		public IEnumerator StopInputForSeconds(float seconds)
