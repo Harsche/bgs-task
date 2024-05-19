@@ -5,17 +5,12 @@ using System;
 namespace Game.Player
 {
 	[RequireComponent(typeof(Rigidbody2D))]
-	public partial class Player : MonoBehaviour
+	public partial class Player : Character
 	{
 		[SerializeField] private float _walkSpeed = 3f;
-		[SerializeField] private Animator _animator;
-		[SerializeField] private SpriteRenderer _spriteRenderer;
 		[SerializeField] private Transform _interactionPivot;
 		[SerializeField] private float _interactionMaxDistance = 0.5f;
-		// [SerializeField] public CollisionShape2D HorizontalCollider { get; private set; }
-		// [SerializeField] public CollisionShape2D VerticalCollider { get; private set; }
-		// [SerializeField] public RayCast2D InteractionRaycast { get; private set; }
-		// [SerializeField] public Vector2 RaycastOffset { get; private set; }
+
 		// [SerializeField] public Inventory Inventory { get; private set; }
 
 		private bool _collided;
@@ -25,7 +20,6 @@ namespace Game.Player
 		private CharacterMovement _characterMovement;
 		public static Player Instance { get; set; }
 		public static Direction FacingDirection { get; private set; } = Direction.Down;
-		public CharacterCustomization CharacterCustomization { get; private set; }
 
 #if UNITY_EDITOR
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -37,8 +31,7 @@ namespace Game.Player
 
 #endif
 
-
-		public void Awake()
+		private void Awake()
 		{
 			if (Instance != null)
 			{
@@ -50,16 +43,15 @@ namespace Game.Player
 
 			_rigidbody = GetComponent<Rigidbody2D>();
 			_characterMovement = new(_rigidbody, _walkSpeed);
-			CharacterCustomization = new(_spriteRenderer.material);
 		}
 
-		public void Update()
+		private void Update()
 		{
 			ProcessInput();
 			UpdateAnimationParameters();
 		}
 
-		public void FixedUpdate()
+		private void FixedUpdate()
 		{
 			_characterMovement.GetMoveCommand().Execute();
 		}
@@ -76,35 +68,27 @@ namespace Game.Player
 
 		}
 
-		public void SetCharacterAttribute(CharacterAttribute attribute)
-		{
-			CharacterCustomization.SetCharacterAttribute(attribute);
-		}
-
 		private void ProcessInput()
 		{
-			if (Input.GetButtonDown(InputButtons.Interact)) { TryInteract(); }
+			if (Input.GetButtonDown(InputActions.Interact)) { TryInteract(); }
 
-			// _running = Input.IsActionPressed("run");
+			if (Input.GetButtonDown(InputActions.MoveUp)) { _characterMovement.AddMoveCommand(Direction.Up); }
+			else if (Input.GetButtonUp(InputActions.MoveUp)) { _characterMovement.RemoveMoveCommand(Direction.Up); }
 
-			if (Input.GetButtonDown(InputButtons.MoveUp)) { _characterMovement.AddMoveCommand(Direction.Up); }
-			else if (Input.GetButtonUp(InputButtons.MoveUp)) { _characterMovement.RemoveMoveCommand(Direction.Up); }
+			if (Input.GetButtonDown(InputActions.MoveDown)) { _characterMovement.AddMoveCommand(Direction.Down); }
+			else if (Input.GetButtonUp(InputActions.MoveDown)) { _characterMovement.RemoveMoveCommand(Direction.Down); }
 
-			if (Input.GetButtonDown(InputButtons.MoveDown)) { _characterMovement.AddMoveCommand(Direction.Down); }
-			else if (Input.GetButtonUp(InputButtons.MoveDown)) { _characterMovement.RemoveMoveCommand(Direction.Down); }
+			if (Input.GetButtonDown(InputActions.MoveLeft)) { _characterMovement.AddMoveCommand(Direction.Left); }
+			else if (Input.GetButtonUp(InputActions.MoveLeft)) { _characterMovement.RemoveMoveCommand(Direction.Left); }
 
-			if (Input.GetButtonDown(InputButtons.MoveLeft)) { _characterMovement.AddMoveCommand(Direction.Left); }
-			else if (Input.GetButtonUp(InputButtons.MoveLeft)) { _characterMovement.RemoveMoveCommand(Direction.Left); }
-
-			if (Input.GetButtonDown(InputButtons.MoveRight)) { _characterMovement.AddMoveCommand(Direction.Right); }
-			else if (Input.GetButtonUp(InputButtons.MoveRight)) { _characterMovement.RemoveMoveCommand(Direction.Right); }
+			if (Input.GetButtonDown(InputActions.MoveRight)) { _characterMovement.AddMoveCommand(Direction.Right); }
+			else if (Input.GetButtonUp(InputActions.MoveRight)) { _characterMovement.RemoveMoveCommand(Direction.Right); }
 		}
 
 
 		private void UpdateAnimationParameters()
 		{
 			Vector2 velocity = _rigidbody.velocity;
-			// string state = Velocity.LengthSquared() > 1f && !collided ? "Walk_" : "Idle_";
 
 			if (velocity.x > 0) { FacingDirection = Direction.Right; }
 			else if (velocity.x < 0) { FacingDirection = Direction.Left; }
@@ -123,11 +107,6 @@ namespace Game.Player
 			}
 
 			_animator.SetFloat(PlayerAnimatorParameters.Speed, velocity.magnitude);
-
-			// HorizontalCollider.Disabled = Mathf.Abs(Velocity.X) <= 0.001f;
-			// VerticalCollider.Disabled = Mathf.Abs(Velocity.Y) <= 0.001f;
-
-			// AnimationPlayer.CurrentAnimation = state + FacingDirection.ToString();
 		}
 
 		private bool TryInteract()

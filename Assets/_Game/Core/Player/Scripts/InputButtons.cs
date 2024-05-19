@@ -1,4 +1,4 @@
-public static class InputButtons
+public static class InputActions
 {
     public static string MoveUp => "Move Up";
     public static string MoveDown => "Move Down";
