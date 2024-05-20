@@ -1,0 +1,17 @@
+Credits:
+
+---Art---
+
+LPC Character Sprites - https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator/tree/master
+
+Exterior tilemap - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
+https://opengameart.org/content/lpc-trees
+
+UI - https://opengameart.org/content/ui-pack-rpg-extension
+
+
+
+---Audio---
+
+Town Theme - https://opengameart.org/content/town-theme-rpg
+SFX - https://www.kenney.nl/assets/interface-sounds
